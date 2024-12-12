@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>로그인 성공</title>
+</head>
+<body>
+    <h1>로그인 성공</h1>
+    <p th:text="${message}" style="color: green;"></p>
+
+    <!-- 로그인 성공 후 리디렉션이나 추가적인 액션을 안내할 수 있음 -->
+    <a href="/user/login">로그인 페이지로 가기</a> <!-- 로그인 후 홈 페이지로 이동하는 링크 -->
+</body>
+</html>

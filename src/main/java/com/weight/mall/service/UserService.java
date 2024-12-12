@@ -1,19 +1,24 @@
 package com.weight.mall.service;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.weight.mall.domain.User;
 import com.weight.mall.dto.request.JoinRequestDto;
 import com.weight.mall.dto.request.LoginRequestDto;
 import com.weight.mall.exception.InvalidCredentialsException;
 import com.weight.mall.exception.UserAlreadyExistsException;
 import com.weight.mall.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 //@RequiredArgsConstructor // final로 선언된 필드들을 대상으로 생성자 자동 생성
 public class UserService {
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired
     private final UserRepository userRepository;
 
@@ -23,6 +28,7 @@ public class UserService {
 
     public void signup(JoinRequestDto joinRequestDto) {
         // 이메일 존재 여부 확인 -> 이미 존재하는 이메일일 경우 오류 throw
+        logger.info("이메일: {}", joinRequestDto.getEmail());
         userRepository.findByEmail(joinRequestDto.getEmail())
                         .ifPresent(user -> {
                             throw new UserAlreadyExistsException("이미 존재하는 이메일입니다.");
