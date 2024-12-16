@@ -35,7 +35,7 @@ public class ProductService {
     public Product findById(Long id) {
         // 상품이 존재하는지 확인 -> 상품을 삭제하고 수정 버튼을 누를 경우 처리하기 위함
         return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("없는 판매글 입니다."));
+                .orElseThrow(() -> new EntityNotFoundException("없는 판매글 입니다."));
     }
 
     // 상품 수정
