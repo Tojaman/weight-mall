@@ -7,14 +7,29 @@
     </div>
 
     <!-- 검색 창 추가 -->
+<!--    <div class="container px-4 px-lg-5 mt-5">-->
+<!--        <div class="search-box">-->
+<!--            <form class="d-flex justify-content-center" action="/search" method="GET">-->
+<!--                <input type="text" class="form-control search-input" placeholder="검색" />-->
+<!--                <button class="btn btn-outline-dark" type="submit">검색</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="container px-4 px-lg-5 mt-5">
         <div class="search-box">
-            <form class="d-flex justify-content-center" action="/search" method="GET">
-                <input type="text" class="form-control search-input" placeholder="검색" />
-                <button class="btn btn-outline-dark" type="submit">검색</button>
+            <form th:action="@{/search}" method="GET" class="d-flex justify-content-center">
+                <select name="category" class="form-select form-select-sm mx-1" style="width: auto; height: 38px;">
+                    <option value="">카테고리</option>
+                    <option value="category1">스트랩</option>
+                    <option value="category2">손목 보호대</option>
+                    <option value="category3">장갑</option>
+                </select>
+                <input type="text" name="keyword" class="form-control search-input-sm mx-1" style="height: 38px;" placeholder="검색" />
+                <button class="btn btn-outline-dark" style="height: 38px; min-width: 70px;" type="submit">검색</button>
             </form>
         </div>
     </div>
+
 
     <!-- Section-->
     <section class="py-5">
