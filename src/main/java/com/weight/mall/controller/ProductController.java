@@ -66,11 +66,13 @@ public class ProductController {
             productService.update(productId, postRequestDto);
 
             // 성공 응답
-            model.addAttribute("message", "상품이 수정되었습니다.");
+            model.addAttribute("message", "상품이 수정 되었습니다.");
             return "redirect:/"; // 수정 후 메인 페이지로 리다이렉트
+        } catch (EntityNotFoundException e) {
+            model.addAttribute("error", e.getMessage());
+            return "redirect:/"; // 임시로 설정(메인 페이지로 이동)
         } catch (Exception e) {
-            model.addAttribute("error", "상품 수정 중 문제가 발생했습니다.");
-            System.out.println(e.getMessage());
+            model.addAttribute("error", e.getMessage());
             return "redirect:/"; // 임시로 설정(메인 페이지로 이동)
         }
     }
@@ -83,11 +85,13 @@ public class ProductController {
             productService.delete(productId);
 
             // 성공 응답
-            model.addAttribute("message", "상품이 삭제되었습니다.");
+            model.addAttribute("message", "상품이 삭제 되었습니다.");
             return "redirect:/";  // 삭제 후 메인 페이지로 리다이렉트
+        } catch (EntityNotFoundException e) {
+            model.addAttribute("error", e.getMessage());
+            return "redirect:/"; // 임시로 설정(메인 페이지로 이동)
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            System.out.println(e.getMessage());
             return "redirect:/"; // 임시로 설정(메인 페이지로 이동)
         }
     }
